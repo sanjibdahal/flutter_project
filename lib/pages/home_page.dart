@@ -17,9 +17,9 @@ class _HomePageState extends State<HomePage> {
 
   int currentindex = 0;
   static const List pages = [
-    Icon(Icons.home),
-    Icon(Icons.photo_album),
-    Icon(Icons.person),
+    Icon(Icons.home, size: 100),
+    Icon(Icons.photo, size: 100),
+    Icon(Icons.person, size: 100),
   ];
 
   @override

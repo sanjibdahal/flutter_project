@@ -1,5 +1,6 @@
 import 'package:app/pages/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'login_page.dart';
 
@@ -47,7 +48,7 @@ class LoginHomePage extends StatelessWidget {
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.lightBlue,
                   minimumSize: Size(300, 50),
-                  textStyle: TextStyle(
+                  textStyle: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   )),
@@ -65,7 +66,7 @@ class LoginHomePage extends StatelessWidget {
                   backgroundColor: Colors.lightBlueAccent,
                   foregroundColor: Colors.white,
                   minimumSize: Size(300, 50),
-                  textStyle: TextStyle(
+                  textStyle: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   )),

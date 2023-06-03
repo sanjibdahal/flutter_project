@@ -1,17 +1,24 @@
 import 'package:app/pages/auth_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'home_page.dart';
+import 'login_home_page.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   void signUserin() async {
-    // debugPrint("User: ${emailController.text} pswd: ${passwordController.text}");
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text, password: passwordController.text);
-    AuthPage();
   }
 
   @override
@@ -61,16 +68,6 @@ class LoginPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     signUserin();
-
-                    // Fluttertoast.showToast(
-                    //   msg:'Login as ${usernameController.text} and password is ${passwordController.text}',
-                    //   toastLength: Toast.LENGTH_SHORT,
-                    //   gravity: ToastGravity.BOTTOM,
-                    //   timeInSecForIosWeb: 1,
-                    //   backgroundColor: Colors.grey[700],
-                    //   textColor: Colors.white,
-                    //   fontSize: 16.0,
-                    // );
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightBlue,

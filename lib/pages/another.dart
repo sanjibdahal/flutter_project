@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Colors.redAccent.shade400),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent.shade400),
       ),
       home: MyHomePage(),
     );
@@ -219,3 +218,13 @@ class FavoritesPage extends StatelessWidget {
 //     )
 //   )
 // }
+
+// Fluttertoast.showToast(
+                    //   msg:'Login as ${usernameController.text} and password is ${passwordController.text}',
+                    //   toastLength: Toast.LENGTH_SHORT,
+                    //   gravity: ToastGravity.BOTTOM,
+                    //   timeInSecForIosWeb: 1,
+                    //   backgroundColor: Colors.grey[700],
+                    //   textColor: Colors.white,
+                    //   fontSize: 16.0,
+                    // );
