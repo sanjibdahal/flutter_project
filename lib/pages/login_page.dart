@@ -1,3 +1,4 @@
+import 'package:app/pages/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -118,6 +119,26 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 16,
                       )),
                 ),
+                SizedBox(height: 12.0),
+
+                //google sign in
+                ElevatedButton(
+                  onPressed: () async {
+                    await AuthService().signInWithGoogle();
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.redAccent,
+                      foregroundColor: Colors.white,
+                      minimumSize: Size(390, 50)),
+                  child: Text('Sign in using Google',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      )),
+                ),
+
                 SizedBox(height: 12.0),
                 TextButton(
                   onPressed: () {

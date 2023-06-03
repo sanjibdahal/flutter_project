@@ -26,11 +26,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   int currentindex = 0;
-  static const List pages = [
-    Icon(Icons.home, size: 100),
-    Icon(Icons.photo, size: 100),
-    Icon(Icons.person, size: 100),
-  ];
+  // static const List pages = [
+  //   Icon(Icons.home, size: 100),
+  //   Icon(Icons.photo, size: 100),
+  //   Icon(Icons.person, size: 100),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,37 @@ class _HomePageState extends State<HomePage> {
             )
           ]),
       body: Center(
-        child: pages.elementAt(currentindex),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // pages.elementAt(currentindex),
+            Text('Hello, ${user?.displayName}'),
+            user?.photoURL != null
+                ? ClipOval(
+                    child: Material(
+                      color: Colors.lightBlue,
+                      child: Image.network(
+                        user!.photoURL!,
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                  )
+                :
+            ClipOval(
+              child: Material(
+                color: Colors.lightBlue,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Icon(
+                    Icons.person,
+                    size: 60,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: NavigationBar(
         destinations: [
