@@ -1,12 +1,55 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 
-class RegisterPage extends StatelessWidget {
-  final usernameController = TextEditingController();
+class RegisterPage extends StatefulWidget {
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
-  void signUserin() {}
+  void registerNewUser() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+
+      showErrorMsg(e.code);
+    }
+  }
+
+  void showErrorMsg(String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.lightBlue,
+            title: Center(
+              child: Text(
+                message,
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +76,6 @@ class RegisterPage extends StatelessWidget {
                 ),
                 SizedBox(height: 24.0),
                 TextField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    labelText: 'Username',
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                SizedBox(height: 12.0),
-                TextField(
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -63,6 +97,7 @@ class RegisterPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     //registering new user
+                    registerNewUser();
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightBlue,

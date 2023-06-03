@@ -24,7 +24,7 @@ class LoginHomePage extends StatelessWidget {
               ),
             ),
             Text(
-              'Dahal\'s Blog',
+              'My App',
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.w500,
