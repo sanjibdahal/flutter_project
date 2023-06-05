@@ -2,6 +2,7 @@ import 'package:app/pages/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -132,11 +133,20 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.redAccent,
                       foregroundColor: Colors.white,
                       minimumSize: Size(390, 50)),
-                  child: Text('Sign in using Google',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      )),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FaIcon(FontAwesomeIcons.google),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('Sign in using Google',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          )),
+                    ],
+                  ),
                 ),
 
                 SizedBox(height: 12.0),
@@ -144,8 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     // Add forgot password logic here
                   },
-                  child: Text('Forgot Password?',
-                      style: TextStyle(fontSize: 14, fontFamily: 'Poppins')),
+                  child: Text('Forgot Password?'),
                 ),
               ],
             ),
