@@ -58,20 +58,31 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(6.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Row(children: [
-                  ClipOval(
-                    child: Material(
-                        color: Colors.lightBlue,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Icon(
-                            Icons.person,
-                            size: 30,
-                            color: Colors.white,
+                  user?.photoURL != null
+                      ? ClipOval(
+                          child: Material(
+                            child: Image.network(
+                              user!.photoURL!,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        )),
-                  ),
+                        )
+                      : ClipOval(
+                          child: Material(
+                              // borderRadius: BorderRadius.circular(5),
+                              color: Colors.lightBlue,
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Icon(
+                                  Icons.person,
+                                  size: 40,
+                                  color: Colors.white,
+                                ),
+                              )),
+                        ),
                   SizedBox(
                     width: 10,
                   ),
@@ -80,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Welcome ${user?.displayName ?? 'User'}',
+                        user?.displayName ?? 'User',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -93,30 +104,49 @@ class _HomePageState extends State<HomePage> {
                 ]),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
             ListTile(
               selectedColor: Colors.lightBlue,
-              leading: Icon(Icons.home),
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Alert'),
+                        icon: Icon(Icons.info),
+                        actions: [
+                          Text(
+                              'This is some random text to alert you! krglksjglksjl vsjnv dsjnvkj vsdjnvk vsjdnk sdn '),
+                          Icon(Icons.handshake)
+                        ],
+                        backgroundColor: Colors.lightBlue,
+                      );
+                    });
+              },
+              leading: FaIcon(FontAwesomeIcons.houseChimney, size: 22),
               title: Text(
                 'Home',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.photo),
+              leading: FaIcon(FontAwesomeIcons.image, size: 22),
               title: Text(
                 'Gallery',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person),
+              leading: FaIcon(FontAwesomeIcons.solidUser, size: 22),
               title: Text(
                 'Profile',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.logout),
+              leading: FaIcon(FontAwesomeIcons.arrowRightFromBracket, size: 22),
               onTap: signUserOut,
               title: Text(
                 'Logout',
