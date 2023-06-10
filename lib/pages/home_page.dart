@@ -1,7 +1,11 @@
+import 'package:app/pages/profile_page.dart';
+import 'package:app/pages/todo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'dashboard.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -27,26 +31,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   int currentindex = 0;
-  // static const List pages = [
-  //   Icon(Icons.home, size: 100),
-  //   Icon(Icons.photo, size: 100),
-  //   Icon(Icons.person, size: 100),
-  // ];
+  static List pages = [DashBoard(), ToDo(), ProfilePage()];
+  static List titles = [Text('Dashboard'), Text('ToDo'), Text('Profile')];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Dashboard'),
-          foregroundColor: Colors.white,
-          elevation: 1,
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: signUserOut,
-              icon: Icon(Icons.logout),
-            )
-          ]),
+        title: titles.elementAt(currentindex),
+        foregroundColor: Colors.white,
+        elevation: 1,
+        centerTitle: true,
+        // actions: [
+        //   IconButton(
+        //     onPressed: signUserOut,
+        //     icon: Icon(Icons.logout),
+        //   )
+        // ],
+      ),
       drawer: Drawer(
         backgroundColor: Color.fromRGBO(255, 255, 255, 0.9),
         child: Padding(
@@ -156,46 +158,11 @@ class _HomePageState extends State<HomePage> {
           ]),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // pages.elementAt(currentindex),
-            // ignore: prefer_if_null_operators
-            Text(
-              'Hello, ${user?.displayName ?? 'User'}',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-            ),
-            user?.photoURL != null
-                ? ClipOval(
-                    child: Material(
-                      color: Colors.lightBlue,
-                      child: Image.network(
-                        user!.photoURL!,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  )
-                : ClipOval(
-                    child: Material(
-                      color: Colors.lightBlue,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Icon(
-                          Icons.person,
-                          size: 60,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-          ],
-        ),
-      ),
+      body: pages.elementAt(currentindex),
       bottomNavigationBar: NavigationBar(
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.photo), label: 'Gallery'),
+          NavigationDestination(icon: Icon(Icons.list), label: 'ToDo'),
           NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
         ],
         selectedIndex: currentindex,
