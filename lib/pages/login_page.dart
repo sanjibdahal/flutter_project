@@ -105,11 +105,9 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Enter your password',
                     prefixIcon: Icon(Icons.lock),
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        ispasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
+                      icon: Icon(ispasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                       onPressed: () {
                         setState(() {
                           ispasswordVisible = !ispasswordVisible;
