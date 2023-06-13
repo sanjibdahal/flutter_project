@@ -1,6 +1,9 @@
+import 'package:app/components/my_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -11,6 +14,18 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   final user = FirebaseAuth.instance.currentUser;
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+    Fluttertoast.showToast(
+      msg: 'Signed out successfully!',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.white,
+      textColor: Colors.black45,
+      fontSize: 16.0,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +128,7 @@ class _DashBoardState extends State<DashBoard> {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: InkWell(
-                onTap: () {},
+                onTap: signUserOut,
                 child: Icon(
                   Icons.logout,
                   color: Colors.lightBlue,
@@ -143,6 +158,7 @@ class _DashBoardState extends State<DashBoard> {
                         'Current Balance',
                         style: TextStyle(fontSize: 18),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         '\$ 1,500',
                         style: TextStyle(
@@ -150,6 +166,7 @@ class _DashBoardState extends State<DashBoard> {
                             color: Colors.lightBlue,
                             fontWeight: FontWeight.bold),
                       ),
+                      SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -299,7 +316,7 @@ class _DashBoardState extends State<DashBoard> {
                       color: Colors.orange[100],
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    width: MediaQuery.sizeOf(context).width / 2.2,
+                    width: MediaQuery.sizeOf(context).width / 2.26,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 10),
@@ -340,7 +357,7 @@ class _DashBoardState extends State<DashBoard> {
                       color: Colors.lightBlue[50],
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    width: MediaQuery.sizeOf(context).width / 2.2,
+                    width: MediaQuery.sizeOf(context).width / 2.26,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 10),
@@ -376,9 +393,7 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 15,
-              ),
+              SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -395,193 +410,29 @@ class _DashBoardState extends State<DashBoard> {
                       ))
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(8),
-                                    bottomRight: Radius.circular(8)),
-                                color: Colors.blue),
-                            height: 35,
-                            width: 4,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Text(
-                              'Design our saas website to more attractive than before',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Text(
-                            '\$300',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        'Due in 23 hours',
-                        style: TextStyle(color: Colors.redAccent, fontSize: 15),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_month),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                'Sept 20, 2023',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple[50],
-                              foregroundColor: Colors.lightBlue[600],
-                              elevation: 0,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.access_time,
-                                  size: 17,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Text(
-                                  'Active',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              SizedBox(height: 10),
+              MyContainer(
+                text: 'Design our saas website to more attractive than before',
+                duedate: DateTime(2023, 12, 12),
+                price: 300,
               ),
               SizedBox(
                 height: 15,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(8),
-                                    bottomRight: Radius.circular(8)),
-                                color: Colors.green),
-                            height: 35,
-                            width: 4,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Text(
-                              'Design something very creative and attractive UI for banking app.',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Text(
-                            '\$600',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        'Due in 3 days',
-                        style: TextStyle(color: Colors.redAccent, fontSize: 15),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_month),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                'Sept 23, 2023',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple[50],
-                              foregroundColor: Colors.lightBlue[600],
-                              elevation: 0,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.access_time,
-                                  size: 17,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Text(
-                                  'Active',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              MyContainer(
+                text:
+                    'Design something very creative and attractive UI for banking app.',
+                duedate: DateTime(2023, 8, 15),
+                price: 600,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              MyContainer(
+                text: 'Hello Guys, how are you doing?',
+                duedate: DateTime(2023, 6, 13),
+                price: 250,
+              ),
             ],
           ),
         ),
