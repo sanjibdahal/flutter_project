@@ -9,8 +9,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  bool ispasswordVisible = false;
 
   void registerNewUser() async {
     showDialog(
@@ -71,14 +71,16 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlutterLogo(
-                  size: 100,
+                Image.asset(
+                  'images/product5.jpg',
+                  height: 150,
                 ),
                 SizedBox(height: 24.0),
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
+                    hintText: 'Enter your email',
                     prefixIcon: Icon(Icons.email),
                     border: OutlineInputBorder(),
                   ),
@@ -86,10 +88,23 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 12.0),
                 TextField(
                   controller: passwordController,
-                  obscureText: true,
+                  obscureText: !ispasswordVisible,
                   decoration: InputDecoration(
                     labelText: 'Password',
+                    hintText: 'Enter your password',
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        ispasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          ispasswordVisible = !ispasswordVisible;
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),

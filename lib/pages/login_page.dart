@@ -2,7 +2,6 @@ import 'package:app/pages/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,8 +10,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  bool ispasswordVisible = false;
 
   void signUserin() async {
     showDialog(
@@ -35,8 +34,8 @@ class _LoginPageState extends State<LoginPage> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.grey[700],
-        textColor: Colors.white,
+        backgroundColor: Colors.white,
+        textColor: Colors.grey,
         fontSize: 16.0,
       );
     } on FirebaseAuthException catch (e) {
@@ -83,14 +82,16 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlutterLogo(
-                  size: 100,
+                Image.asset(
+                  'images/product5.jpg',
+                  height: 150,
                 ),
                 SizedBox(height: 24.0),
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
+                    hintText: 'Enter your email',
                     prefixIcon: Icon(Icons.email),
                     border: OutlineInputBorder(),
                   ),
@@ -98,10 +99,23 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 12.0),
                 TextField(
                   controller: passwordController,
-                  obscureText: true,
+                  obscureText: !ispasswordVisible,
                   decoration: InputDecoration(
                     labelText: 'Password',
+                    hintText: 'Enter your password',
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        ispasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          ispasswordVisible = !ispasswordVisible;
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -125,18 +139,30 @@ class _LoginPageState extends State<LoginPage> {
                 //google sign in
                 ElevatedButton(
                   onPressed: () async {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        });
                     await AuthService().signInWithGoogle();
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
                     // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
-                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.white,
+                      // foregroundColor: Colors.white,
                       minimumSize: Size(390, 50)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(FontAwesomeIcons.google),
+                      Image.asset(
+                        'images/google.png',
+                        height: 25,
+                      ),
                       SizedBox(
                         width: 10,
                       ),

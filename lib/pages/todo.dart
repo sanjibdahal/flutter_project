@@ -16,6 +16,7 @@ class _ToDoState extends State<ToDo> {
   void addToDo() {
     setState(() {
       todos.add(textcontroller.text);
+      textcontroller.text = '';
     });
   }
 
@@ -29,7 +30,7 @@ class _ToDoState extends State<ToDo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView.builder(
             itemCount: todos.length,
             itemBuilder: (context, index) {
@@ -42,7 +43,6 @@ class _ToDoState extends State<ToDo> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Add your TODO',
-                        labelText: 'Add your TODO',
                         suffixIcon: InkWell(
                           onTap: addToDo,
                           child: Icon(Icons.add),

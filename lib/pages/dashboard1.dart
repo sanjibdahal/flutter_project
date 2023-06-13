@@ -1,9 +1,9 @@
-import 'package:app/pages/dashboard.dart';
 import 'package:app/pages/todo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dashboard.dart';
 import 'profile_page.dart';
 
 class HomePage extends StatefulWidget {

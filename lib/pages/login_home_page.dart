@@ -33,8 +33,8 @@ class LoginHomePage extends StatelessWidget {
             ),
             SizedBox(height: 30.0),
             CircleAvatar(
-              radius: 120,
-              backgroundImage: AssetImage('images/product4.jpg'),
+              radius: 100,
+              backgroundImage: AssetImage('images/product5.jpg'),
             ),
             SizedBox(height: 30.0),
             ElevatedButton(
