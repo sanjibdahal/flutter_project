@@ -9,9 +9,9 @@ class MyContainer extends StatefulWidget {
     required this.price,
   });
 
-  String? text;
-  DateTime duedate;
-  double? price;
+  final String? text;
+  final DateTime duedate;
+  final double? price;
 
   @override
   State<MyContainer> createState() => _MyContainerState();

@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -86,52 +85,59 @@ class _DashBoardState extends State<DashBoard> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(
+            padding: const EdgeInsets.all(6.0),
+            child: ClipOval(
+              child: Material(
+                shape: CircleBorder(),
                 color: Colors.deepPurple[50],
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: InkWell(
-                onTap: () {},
-                child: Icon(
-                  Icons.add,
-                  color: Colors.lightBlue,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: InkWell(
+                    child: Icon(
+                      Icons.add,
+                      size: 22,
+                      color: Colors.lightBlue,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(
+            padding: const EdgeInsets.all(6.0),
+            child: ClipOval(
+              child: Material(
+                shape: CircleBorder(),
                 color: Colors.deepPurple[50],
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: InkWell(
-                onTap: () {},
-                child: Icon(
-                  Icons.notifications_none,
-                  color: Colors.lightBlue,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: InkWell(
+                    child: Icon(
+                      Icons.notifications_none,
+                      size: 22,
+                      color: Colors.lightBlue,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(
+            padding: const EdgeInsets.all(6.0),
+            child: ClipOval(
+              child: Material(
+                shape: CircleBorder(),
                 color: Colors.deepPurple[50],
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: InkWell(
-                onTap: signUserOut,
-                child: Icon(
-                  Icons.logout,
-                  color: Colors.lightBlue,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: InkWell(
+                    onTap: () => signUserOut(),
+                    child: Icon(
+                      Icons.logout,
+                      size: 22,
+                      color: Colors.lightBlue,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -155,7 +161,7 @@ class _DashBoardState extends State<DashBoard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Current Balance',
+                        'Your Current Balance',
                         style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(height: 10),
@@ -410,7 +416,7 @@ class _DashBoardState extends State<DashBoard> {
                       ))
                 ],
               ),
-              SizedBox(height: 10),
+              Divider(),
               MyContainer(
                 text: 'Design our saas website to more attractive than before',
                 duedate: DateTime(2023, 12, 12),
