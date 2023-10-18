@@ -16,7 +16,7 @@ class LoginHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome to',
+              'Welcome t',
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.w500,
@@ -34,7 +34,7 @@ class LoginHomePage extends StatelessWidget {
             SizedBox(height: 30.0),
             CircleAvatar(
               radius: 100,
-              backgroundImage: AssetImage('images/product5.jpg'),
+              backgroundImage: AssetImage('images/logo.jpg'),
             ),
             SizedBox(height: 30.0),
             ElevatedButton(
