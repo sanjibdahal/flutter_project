@@ -16,21 +16,21 @@ class LoginHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome t',
+              'Welcome',
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
             ),
-            Text(
-              'My App',
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
+            // Text(
+            //   'My App',
+            //   style: TextStyle(
+            //     fontSize: 50,
+            //     fontWeight: FontWeight.w500,
+            //     color: Colors.white,
+            //   ),
+            // ),
             SizedBox(height: 30.0),
             CircleAvatar(
               radius: 100,

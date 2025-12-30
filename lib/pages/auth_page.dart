@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:app/pages/home_page.dart';
 import 'package:app/pages/login_home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +21,7 @@ class AuthPage extends StatelessWidget {
           }
           //if user is not logged in
           else {
+            log("User is not logged in");
             return LoginHomePage();
           }
         },
